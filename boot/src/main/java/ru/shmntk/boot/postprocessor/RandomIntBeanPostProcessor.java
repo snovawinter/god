@@ -16,8 +16,7 @@ public class RandomIntBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Field[] declaredFields = bean.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            RandomInt randomInt = declaredField.getAnnotation(RandomInt.class);
-            if (randomInt != null) {
+            if (declaredField.isAnnotationPresent(RandomInt.class)) {
                 declaredField.setAccessible(true);
                 ReflectionUtils.setField(declaredField, bean, new Random().nextInt(50));
             }

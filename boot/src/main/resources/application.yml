@@ -2,3 +2,6 @@ spring:
   security:
     user:
       password: user
+  h2:
+    console:
+      enabled: true

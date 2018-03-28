@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-/.idea/
-/god.iml
-/boot/.mvn/wrapper/
-/boot/mvnw.cmd
-/boot/mvnw
+.idea/
+god.iml
+.mvn/
+mvnw
+mvnw.cmd
