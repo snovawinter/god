@@ -1,4 +1,4 @@
-package ru.shmntk.boot.postprocessor;
+package ru.shmntk.boot.postprocessor.bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
