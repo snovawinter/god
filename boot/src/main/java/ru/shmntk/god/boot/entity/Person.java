@@ -1,4 +1,4 @@
-package ru.shmntk.boot.entity;
+package ru.shmntk.god.boot.entity;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package ru.shmntk.boot.util.annotations;
+package ru.shmntk.god.boot.util.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

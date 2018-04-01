@@ -1,4 +1,4 @@
-package ru.shmntk.boot;
+package ru.shmntk.god.boot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
