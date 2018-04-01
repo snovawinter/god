@@ -7,11 +7,12 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PERSON")
+@SequenceGenerator(name = "PERSON_SEQ", sequenceName = "PERSON_SEQ", allocationSize = 1)
 @Data
 public class Person implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "PERSON_SEQ")
     @Column(name = "PERSON_ID")
     private Integer personId;
     @Column(name = "LAST_NAME")
@@ -22,7 +23,6 @@ public class Person implements Serializable {
     private String middleName;
     @Column(name = "PHONE")
     private String phone;
+    @Column(name = "EMAIL")
     private String email;
-    @Column(name = "ADDRESS_ID")
-    private Integer addressId;
 }
