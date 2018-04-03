@@ -26,4 +26,9 @@ datasource:
       password:
       username: sa
       driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:file:C:/Users/litva/h2/goddb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE # сохранение данных БД H2 в файл
+      jdbc-url: jdbc:h2:file:C:/Users/litva/h2/goddb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["metrics", "health", "env", "shutdown"]

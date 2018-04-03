@@ -1,6 +1,7 @@
 package ru.shmntk.god.boot.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -24,10 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	this.godH2DataSource = godH2DataSource;
     }
 
+    // @formatter:off
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-	http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+        // Все запросы к придложению только через авторизацию
+        // Только админ может делать запросы к актуатору
+	http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
+			.anyRequest().authenticated().and().httpBasic();
     }
+    // @formatter:on
 
     @Bean
     public JdbcUserDetailsManager userDetailsService() {

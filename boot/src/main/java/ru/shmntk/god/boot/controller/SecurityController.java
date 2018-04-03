@@ -25,8 +25,7 @@ public class SecurityController {
 
     @GetMapping("/createUser")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String createUser(@RequestParam("user") String user, @RequestParam("password") String password,
-		    @RequestParam("roles") String[] roles) {
+    public String createUser(@RequestParam String user, @RequestParam String password, @RequestParam String[] roles) {
 	PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	UserDetails userDetails = User.withUsername(user).password(encoder.encode(password)).roles(roles).build();
 	if (userDetailsService.userExists(user)) {
