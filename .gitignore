@@ -4,3 +4,4 @@ god.iml
 .mvn/
 mvnw
 mvnw.cmd
+logs/

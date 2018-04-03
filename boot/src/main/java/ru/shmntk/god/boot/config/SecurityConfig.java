@@ -20,11 +20,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource godH2DataSource;
 
+    /**
+     * Конструктор
+     *
+     * @param godH2DataSource Датасурс с таблицей пользоватлей приложения
+     */
     @Autowired
     public SecurityConfig(DataSource godH2DataSource) {
 	this.godH2DataSource = godH2DataSource;
     }
 
+    /**
+     * Авторизация в приложение через Basic-авторизацию
+     *
+     * @param http HttpSecurity
+     * @throws Exception Exception
+     */
     // @formatter:off
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -35,6 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     // @formatter:on
 
+    /**
+     * Переопределение бина для управления пользователями и правами доступа в БД
+     *
+     * @return JDBC-менеджер
+     */
     @Bean
     public JdbcUserDetailsManager userDetailsService() {
 	JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
@@ -42,11 +58,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	return manager;
     }
 
+    /**
+     * Енкодер для паролей полльзователей. В БД будут писаться закодированные пароли
+     *
+     * @return Енкодер паролей
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
 	return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+    /**
+     * Конфигурация секьюрити через БД
+     *
+     * @param auth AuthenticationManagerBuilder
+     * @throws Exception Exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	auth.jdbcAuthentication().dataSource(godH2DataSource);

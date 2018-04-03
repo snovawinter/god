@@ -20,6 +20,7 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE # подставка параметров в запрос при логгировании SQL
+  file: C:\Users\litva\IdeaProjects\god\logs\Application.log # Файл, который будет отображаться в http://localhost:8080/actuator/logfile
 datasource:
   god:
     h2:
@@ -31,4 +32,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: ["metrics", "health", "env", "shutdown"]
+        include: ["metrics",
+                  "health",
+                  "env",
+                  "shutdown",
+                  "loggers",
+                  "logfile",
+                  "heapdump"] # Ендпоинты, которые доступны по ссылке http://localhost:8080/actuator/...
