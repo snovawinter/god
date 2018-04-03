@@ -1,6 +1,36 @@
 --liquibase formatted sql
 
 --changeset litvak:1
+CREATE TABLE USERS
+(
+  USERNAME VARCHAR(50) PRIMARY KEY NOT NULL,
+  PASSWORD VARCHAR(500)            NOT NULL,
+  ENABLED  BOOLEAN                 NOT NULL
+);
+--rollback DROP TABLE USERS;
+
+--changeset litvak:2
+insert INTO USERS(USERNAME, PASSWORD, ENABLED)
+VALUES ('admin', '{noop}admin', true);
+--rollback DELETE FROM USERS u WHERE u.USERNAME = 'admin';
+
+--changeset litvak:3
+CREATE TABLE AUTHORITIES
+(
+  USERNAME  VARCHAR(50) NOT NULL,
+  AUTHORITY VARCHAR(50) NOT NULL,
+  CONSTRAINT FK_AUTHORITIES_USERS FOREIGN KEY (USERNAME) REFERENCES USERS (USERNAME)
+);
+CREATE UNIQUE INDEX IX_AUTH_USERNAME
+  ON AUTHORITIES (USERNAME, AUTHORITY);
+--rollback DROP TABLE AUTHORITIES;
+
+--changeset litvak:4
+INSERT INTO AUTHORITIES(USERNAME, AUTHORITY)
+VALUES ('admin', 'ROLE_ADMIN');
+--rollback DELETE FROM AUTHORITIES a WHERE a.USERNAME = 'admin';
+
+--changeset litvak:5
 CREATE TABLE PERSON
 (
   PERSON_ID   INTEGER PRIMARY KEY NOT NULL,
@@ -12,11 +42,6 @@ CREATE TABLE PERSON
 );
 --rollback DROP TABLE PERSON;
 
---changeset litvak:2
+--changeset litvak:6
 CREATE SEQUENCE PERSON_SEQ start with 1 increment by 1;
 --rollback DROP SEQUENCE PERSON_SEQ;
-
---changeset litvak:3
-INSERT INTO PERSON(PERSON_ID, EMAIL, FIRST_NAME, LAST_NAME, MIDDLE_NAME, PHONE)
-values (PERSON_SEQ.NEXTVAL, 'litvak.alexey@gmail.com', 'Алексей', 'Литвак', 'Александрович', '+79262777650');
---rollback delete from person;
