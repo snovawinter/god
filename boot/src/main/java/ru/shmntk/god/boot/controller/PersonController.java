@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.shmntk.god.boot.entity.Person;
 import ru.shmntk.god.boot.repository.PersonRepository;
+import ru.shmntk.god.boot.util.annotations.Monitoring;
 
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class PersonController {
 
     @GetMapping("/{personId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @Monitoring("Получение человека по идентификатору (REST)")
     public Optional<Person> getPerson(@PathVariable Integer personId) {
 	return personRepository.findById(personId);
     }

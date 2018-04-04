@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // @formatter:off
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Все запросы к придложению только через авторизацию
+        // Все запросы к приложению только через авторизацию
         // Только админ может делать запросы к актуатору
 	http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
 			.anyRequest().authenticated().and().httpBasic();
