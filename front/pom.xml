@@ -2,16 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>god</artifactId>
+        <groupId>ru.shmntk</groupId>
+        <version>1.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.shmntk</groupId>
-    <artifactId>god</artifactId>
-    <version>1.0</version>
+    <artifactId>front</artifactId>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>front</module>
-        <module>boot</module>
-    </modules>
-    
 </project>
