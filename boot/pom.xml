@@ -22,6 +22,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>9</java.version>
+        <resources.dir>${project.basedir}/src/main/resources</resources.dir>
+        <public.dir>${resources.dir}/public</public.dir>
     </properties>
 
     <dependencies>
@@ -82,6 +84,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${resources.dir}</directory>
+                <filtering>true</filtering>
+            </resource>
+            <!-- TODO переделать на templates и static -->
+            <resource>
+                <directory>${project.basedir}/../front/build</directory>
+                <targetPath>${public.dir}</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
